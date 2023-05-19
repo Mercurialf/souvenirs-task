@@ -1,0 +1,4 @@
+Manufacturer{name='Microsoft', country='USA'}
+Manufacturer{name='Apple', country='Canada'}
+Manufacturer{name='NBA', country='Italy'}
+Manufacturer{name='IBM', country='Mexico'}
