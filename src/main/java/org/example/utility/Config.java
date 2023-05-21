@@ -1,5 +1,8 @@
 package org.example.utility;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public class Config {
     public final static String DEFAULT_SOUVENIR_TEXT_FILE = "Souvenir.txt";
     public final static String DEFAULT_MANUFACTURER_TEXT_FILE = "Manufacturer.txt";

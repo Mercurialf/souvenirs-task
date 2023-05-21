@@ -61,7 +61,7 @@ class SouvenirTest {
 
     @Test
     void TestToString() {
-        String info = "Souvenir{name='Cup', manufacturer='Microsoft', releaseDate=1997-05-13, price=12.99}";
+        String info = "Souvenir(name=Cup, manufacturer=Microsoft, releaseDate=1997-05-13, price=12.99)";
         assertEquals(info, souvenir.toString());
     }
 
