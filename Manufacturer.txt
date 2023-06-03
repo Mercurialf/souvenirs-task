@@ -1,4 +1,6 @@
-Manufacturer{name='Microsoft', country='USA'}
-Manufacturer{name='Apple', country='Canada'}
-Manufacturer{name='NBA', country='Italy'}
-Manufacturer{name='IBM', country='Mexico'}
+Manufacturer(name=Manufacturer(name=Manufacturer(name=Manufacturer(name=Microsoft, country='USA'))))
+Manufacturer(name=Manufacturer(name=Manufacturer(name=Manufacturer(name=Apple, country='Canada'))))
+Manufacturer(name=Manufacturer(name=Manufacturer(name=Manufacturer(name=NBA, country='Italy'))))
+Manufacturer(name=Manufacturer(name=Manufacturer(name=Manufacturer(name=IBM, country='Mexico'))))
+Manufacturer(name=Manufacturer(name=Manufacturer(name=Manufacturer(name=Coca-Cola, country=USA))))
+Manufacturer(name=SpaceX, country=USA)

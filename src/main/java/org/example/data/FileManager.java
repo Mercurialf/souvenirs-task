@@ -7,7 +7,6 @@ import org.example.products.souvenir.Souvenir;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -25,7 +24,7 @@ public class FileManager {
             writer.write(line);
             writer.newLine();
             writer.close();
-            }
+        }
     }
 
     @SneakyThrows
@@ -38,47 +37,47 @@ public class FileManager {
         for (String line : manufacturerLines) {
             writer.write(line);
             writer.newLine();
-            }
+        }
     }
 
     @SneakyThrows
-    public static void loadSouvenirsFromFile(String filename, List<Souvenir> souvenirs) {
+    private static void loadSouvenirsFromFile(String filename, List<Souvenir> souvenirs) {
         List<String> lines = Files.readAllLines(Paths.get(filename));
         souvenirs.clear();
         for (String line : lines) {
-            String[] fields = line.split(",");
-            String name = fields[0]
-                    .replace("Souvenir{name=", "")
-                    .replace("'", "");
-            String manufacturer = fields[1]
-                    .replace(" manufacturer=", "")
-                    .replace("'", "");
-            LocalDate releaseDate = LocalDate.parse(fields[2]
-                    .replace(" releaseDate=", ""));
-            double price = Double.parseDouble(fields[3]
-                    .replace("price=", "")
-                    .replace("}", ""));
-            Souvenir souvenir = new Souvenir(name, manufacturer, releaseDate, price);
+            Souvenir souvenir = parseSouvenirFromString(line);
             souvenirs.add(souvenir);
         }
     }
 
+    private static Souvenir parseSouvenirFromString(String line) {
+        String[] fields = line.split(",");
+        String name = parseFieldValue(fields[0], "Souvenir{name=", "'");
+        String manufacturer = parseFieldValue(fields[1], " manufacturer=", "'");
+        LocalDate releaseDate = LocalDate.parse(parseFieldValue(fields[2], " releaseDate=", ""));
+        double price = Double.parseDouble(parseFieldValue(fields[3], "price=", "}"));
+        return new Souvenir(name, manufacturer, releaseDate, price);
+    }
+
     @SneakyThrows
-    public static void loadManufacturersFromFile(String filename, List<Manufacturer> manufacturers) {
+    private static void loadManufacturersFromFile(String filename, List<Manufacturer> manufacturers) {
         List<String> lines = Files.readAllLines(Paths.get(filename));
         manufacturers.clear();
         for (String line : lines) {
-            String[] fields = line.split(",");
-            String name = fields[0]
-                    .replace("Manufacturer{name=", "")
-                    .replace("'", "");
-            String country = fields[1]
-                    .replace(" country=", "")
-                    .replace("'", "")
-                    .replace("}", "");
-            Manufacturer manufacturer = new Manufacturer(name, country);
+            Manufacturer manufacturer = parseManufacturerFromString(line);
             manufacturers.add(manufacturer);
         }
+    }
+
+    private static Manufacturer parseManufacturerFromString(String line) {
+        String[] fields = line.split(",");
+        String name = parseFieldValue(fields[0], "Manufacturer{name=", "'");
+        String country = parseFieldValue(fields[1], " country=", "").replace("}", "");
+        return new Manufacturer(name, country);
+    }
+
+    private static String parseFieldValue(String field, String prefix, String suffix) {
+        return field.replace(prefix, "").replace(suffix, "");
     }
 
     public static void loadAllList(String manufacturersFileName, List<Manufacturer> manufacturers,

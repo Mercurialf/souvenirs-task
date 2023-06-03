@@ -37,7 +37,7 @@ class ManufacturerTest {
 
     @Test
     void TestToString() {
-        String info = "Manufacturer{name='Microsoft', country='USA'}";
+        String info = "Manufacturer(name=Microsoft, country=USA)";
         assertEquals(info, manufacturer.toString());
     }
 

@@ -18,6 +18,7 @@ public class SouvenirCollection implements DefaultSouvenirMethods {
         manufacturerList = new ArrayList<>();
         loadAllFromFIle();
     }
+
     @Override
     public void addSouvenir(Souvenir souvenir) {
         souvenirList.add(souvenir);
@@ -58,7 +59,7 @@ public class SouvenirCollection implements DefaultSouvenirMethods {
     }
 
     @Override
-    public void editManufacturer(String name, String newName,String country) {
+    public void editManufacturer(String name, String newName, String country) {
         Manufacturer manufacturer = searchManufacturer(name);
         if (manufacturer != null) {
             manufacturerList.remove(manufacturer);
